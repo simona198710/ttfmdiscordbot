@@ -3,19 +3,10 @@ import os
 import asyncio
 import config
 from discord.ext import commands
-import sys
-
-from os import listdir
-from os.path import isfile, join
-import traceback
-import time
-import datetime
 
 intents = discord.Intents.default()
-intents.members = True
 
 bot = commands.Bot(command_prefix=str(config.prefix), case_insensitive=True,heartbeat_timeout=300,intents=intents)
-bot.remove_command("help")
 
 @bot.event
 async def on_ready():
@@ -36,16 +27,14 @@ async def on_command_error(ctx, error):
 		print(error, ctx)
 
 def run_client(token):
-	global bot
 	
-	while True:
-		loadPlugins()
-		loop = asyncio.get_event_loop()
-		try:
-			loop.run_until_complete(bot.start(token))
-		except Exception as e:
-			print("Error", e)
-			loop.run_until_complete(bot.logout())
+	loadPlugins()
+	loop = asyncio.get_event_loop()
+	try:
+		loop.run_until_complete(bot.start(token))
+	except Exception as e:
+		print("Error", e)
+		loop.run_until_complete(bot.logout())
 
 def loadPlugins():
 	
