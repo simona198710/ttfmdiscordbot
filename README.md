@@ -10,34 +10,48 @@ Its doing this because tt.fm is very picky about the format, it needs more info 
 
 So the bot saves this information when its emitted on the socket, so it can be reused later. 
 
-Adding support for fetching this from the apple,spotify and soundcloud apis later may be possible.
+Adding support for fetching this from the apple, spotify and soundcloud apis later may be possible.
 
 Commads:
 
+```
 !manualUpdate
+```
 
 Used to manually update rooms info.
 
+```
 !connect <roomName>
+```
 
 To connect to a room, use room name or room slug
 
+```
 !disconnect
+```
 
 Disconect from room
 
+```
 !joinDj <djSlot>
+```
 
 Will pick a random track from your tracks-folder, so will need at least one track in there.
 
+```
 !addTrack <isrc>
+```
 
 isrc is optional, if skipped it will pick a random track from track folder.
 
+```
 !leaveDJ
+```
+Leave the dj position
 
+```
 !sendChat <message>
+```
 
 Chat messages will be sent to the channel configured in chatChannel, all other events will be sent to eventsChannel.
-
 Room updates(new rooms and room number of members) will be posted to roomChannel, old embeds will be edited.
