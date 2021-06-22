@@ -1,0 +1,8 @@
+aiohttp
+cbor2
+pycryptodomex
+python_socketio
+requests
+yarl
+discord.py
+pubnub
