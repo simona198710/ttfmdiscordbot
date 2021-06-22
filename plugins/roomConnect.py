@@ -45,7 +45,7 @@ class roomConnect(commands.Cog):
 	@sio.event
 	async def addAvatarToDancefloor(data):
 		print('Message received: '+str(data))
-		roomChannelObj = sio.bot.get_channel(int(config.config['SETTINGS']['roomChannel'].strip()))
+		roomChannelObj = sio.bot.get_channel(int(config.config['SETTINGS']['eventsChannel'].strip()))
 		await roomChannelObj.send("New user connected "+str(data["nickname"]))
 	
 	@sio.event
@@ -71,13 +71,13 @@ class roomConnect(commands.Cog):
 		if not room is None:
 		
 			print('Connected to: '+str(room))
-			roomChannelObj = sio.bot.get_channel(int(config.config['SETTINGS']['roomChannel'].strip()))
+			roomChannelObj = sio.bot.get_channel(int(config.config['SETTINGS']['eventsChannel'].strip()))
 			await roomChannelObj.send('Connected to: '+str(room))
 	
 	@sio.event
 	async def disconnect():
 		print('Disconnected from: '+str(room))
-		roomChannelObj = sio.bot.get_channel(int(config.config['SETTINGS']['roomChannel'].strip()))
+		roomChannelObj = sio.bot.get_channel(int(config.config['SETTINGS']['eventsChannel'].strip()))
 		await roomChannelObj.send('Disconnected from: '+str(room))
 	
 	@commands.command(pass_context=True, brief="", name='disconnect')
@@ -152,7 +152,7 @@ class roomConnect(commands.Cog):
 
 				def message(self, pubnub, message):
 					print("New pubnub msg: "+str(message.message))
-					roomChannelObj = pubnub.bot.get_channel(int(config.config['SETTINGS']['roomChannel'].strip()))
+					roomChannelObj = pubnub.bot.get_channel(int(config.config['SETTINGS']['chatChannel'].strip()))
 					
 					pubnub.bot.loop.create_task(roomChannelObj.send("New chat message from "+str(message.message["userName"])+": " +str(message.message["content"])))
 			
