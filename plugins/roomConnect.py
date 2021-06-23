@@ -55,6 +55,13 @@ class roomConnect(commands.Cog):
 			if not os.path.isfile(filename):
 				with open(filename, 'w') as outfile:
 					json.dump(data["track"], outfile)
+		if str(data["track"]["isNextToPlay"]) == "True":
+			roomChannelObj = sio.bot.get_channel(int(config.config['SETTINGS']['eventsChannel'].strip()))
+			try:
+				await roomChannelObj.send("Current Track is "+str(data["track"]["title"])+" by "+str(data["track"]["user"]["name"]))
+			except: #If artist name is missing
+				await roomChannelObj.send("Current Track is "+str(data["track"]["title"]))
+		
 			
 	''' #Using pubnub for chats
 	@sio.event
